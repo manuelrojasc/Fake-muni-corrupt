@@ -4,7 +4,7 @@ export const Data = () => {
     const [ruc, setRuc] = useState("");
     const nameInput = useRef(null);
     let [data, setData] = useState([]);
-  
+    let [data1,setData1]=useState([])
     const handleSubmit = async (e) => {
       e.preventDefault();
       await getData();
@@ -13,7 +13,7 @@ export const Data = () => {
     };
   
     const getData = async () => {
-      const res = await fetch(`https://my-api-project.herokuapp.com/items`).then(res => res.json())
+      const res = await fetch(`https://applicitacion.herokuapp.com/v1/licitacion/licitante/${ruc}`).then(res => res.json())
       console.log(res)
       setData(res);
     };
@@ -41,12 +41,7 @@ export const Data = () => {
           </form>
         </div>
         <div className="col-md-6">
-        {data.map((data) => (
-              <tr key={data.id}>
-                <td>{data.name}</td>
-                <td>{data.course}</td>
-              </tr>
-             ))}
+             {data.apto}
         </div>
       </div>
     );
